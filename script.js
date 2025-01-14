@@ -31,8 +31,10 @@ function displayBooks() {
     })    
     
     // loop through library arr, create tr for each book
-    library.forEach(book => {
+    library.forEach((book, idx) => {
         let tableRow = tableEl.appendChild(document.createElement('tr'));
+        // set data attribute for step 5
+        tableRow.setAttribute('data-book', `book-${idx + 1}`);
 
         // loop through book obj keys, create td cell for each value
         bookKeys.forEach(val =>{
@@ -42,9 +44,12 @@ function displayBooks() {
     })
 }
 
+
+
 addBooks('Book1', 'J. Doe', 200, true, 'Book2', 'W. Knows', 244, false, 'Book3', 'Unkown', 42, true);
 
 addBooks('Book4', 'Author', 333, false);
+addBooks('Book6', 'Author6', 423, true);
 displayBooks();
 
-// addBooks('Book5', 'F. Yu', 86, true);
+addBooks('Book5', 'F. Yu', 86, true);
