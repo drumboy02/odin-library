@@ -24,16 +24,21 @@ function addBooks(...args) {
 function displayBooks() {
     // create a table and headers for each key in Book
     let tableEl = mainEl.appendChild(document.createElement('table'));
+    let headerRow = tableEl.appendChild(document.createElement('tr'));
     bookKeys.forEach(key => {
-        let tableHead = tableEl.appendChild(document.createElement('th'));
-        tableHead.textContent = key;
+        let tableHead = headerRow.appendChild(document.createElement('th'));
+        tableHead.textContent = key.charAt(0).toUpperCase() + key.slice(1);
     })    
     
-    // loop through library arr and display each book
+    // loop through library arr, create tr for each book
     library.forEach(book => {
         let tableRow = tableEl.appendChild(document.createElement('tr'));
-        let tableData = tableRow.appendChild(document.createElement('td'));
-        tableData.textContent = `${book.title} ${book.author} ${book.pages} ${book.read}`;
+
+        // loop through book obj keys, create td cell for each value
+        bookKeys.forEach(val =>{
+            let tableData = tableRow.appendChild(document.createElement('td'));
+            tableData.textContent = book[val];
+        })
     })
 }
 

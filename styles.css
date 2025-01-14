@@ -4,7 +4,12 @@
     box-sizing: border-box;
 }
 
-th, tr {
+th {
     color: #eee;
     background-color: #000;
+}
+
+tr {
+    color: #eee;
+    background-color: #555;
 }
