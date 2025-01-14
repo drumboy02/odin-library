@@ -1,18 +1,21 @@
 const mainEl = document.querySelector('main');
 
 const library = [];
+const bookLen = Book.length;
+const bookKeys = Object.keys(new Book());
+console.log(bookLen);
+console.log(bookKeys);
 
 function Book(title, author, pages, read) {
     this.title = title;
     this.author = author;
     this.pages = pages;
     this.read = read;
+    
 }
 
 function addBooks(...args) {
-    const bookLen = Book.length;
-
-    // Create n Book objects with bookLen props
+    // Create Book objects and add to library
     while (args.length > 0) {
         library.push(new Book(...args));
         for (i = 0; i < bookLen; i++) {
@@ -33,7 +36,6 @@ function displayBooks() {
         tableData.textContent = `${book.title} ${book.author} ${book.pages} ${book.read}`;
     })
 }
-
 
 addBooks('Book1', 'J. Doe', 200, true, 'Book2', 'W. Knows', 244, false, 'Book3', 'Unkown', 42, true);
 
