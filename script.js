@@ -3,15 +3,12 @@ const mainEl = document.querySelector('main');
 const library = [];
 const bookLen = Book.length;
 const bookKeys = Object.keys(new Book());
-console.log(bookLen);
-console.log(bookKeys);
 
 function Book(title, author, pages, read) {
     this.title = title;
     this.author = author;
     this.pages = pages;
-    this.read = read;
-    
+    this.read = read;    
 }
 
 function addBooks(...args) {
@@ -25,14 +22,17 @@ function addBooks(...args) {
 }
 
 function displayBooks() {
-    // create a table
-    let tableEl = mainEl.appendChild(document.createElement('table'));    
-    tableEl.appendChild(document.createElement('th'));
+    // create a table and headers for each key in Book
+    let tableEl = mainEl.appendChild(document.createElement('table'));
+    bookKeys.forEach(key => {
+        let tableHead = tableEl.appendChild(document.createElement('th'));
+        tableHead.textContent = key;
+    })    
     
     // loop through library arr and display each book
     library.forEach(book => {
-        tableRow = tableEl.appendChild(document.createElement('tr'));
-        tableData = tableRow.appendChild(document.createElement('td'));
+        let tableRow = tableEl.appendChild(document.createElement('tr'));
+        let tableData = tableRow.appendChild(document.createElement('td'));
         tableData.textContent = `${book.title} ${book.author} ${book.pages} ${book.read}`;
     })
 }
