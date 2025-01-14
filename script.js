@@ -1,8 +1,6 @@
 const mainEl = document.querySelector('main');
 
 const library = [];
-const bookLen = Book.length;
-const bookKeys = Object.keys(new Book());
 
 function Book(title, author, pages, read) {
     this.title = title;
@@ -12,6 +10,8 @@ function Book(title, author, pages, read) {
 }
 
 function addBooks(...args) {
+    const bookLen = Book.length;
+
     // Create Book objects and add to library
     while (args.length > 0) {
         library.push(new Book(...args));
@@ -22,6 +22,8 @@ function addBooks(...args) {
 }
 
 function displayBooks() {
+    const bookKeys = Object.keys(new Book());
+    
     // create a table and headers for each key in Book
     let tableEl = mainEl.appendChild(document.createElement('table'));
     let headerRow = tableEl.appendChild(document.createElement('tr'));
