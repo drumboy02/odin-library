@@ -1,4 +1,23 @@
 const mainEl = document.querySelector('main');
+const newBook = document.querySelector('#new-book-btn');
+const dialog = document.querySelector('dialog');
+const userInput = document.querySelector('#user-input');
+const submitBtn = document.querySelector('#submit-btn');
+const closeBtn = document.querySelector('#close-btn');
+
+newBook.addEventListener('click', () => {
+    dialog.showModal();
+})
+
+submitBtn.addEventListener('click', () => {
+    console.log(userInput.value)
+    dialog.close(userInput.value);
+    // userInput.value = "";
+})
+
+closeBtn.addEventListener('click', () => {
+    dialog.close();
+})
 
 const library = [];
 
@@ -23,7 +42,7 @@ function addBooks(...args) {
 
 function displayBooks() {
     const bookKeys = Object.keys(new Book());
-    
+
     // create a table and headers for each key in Book
     let tableEl = mainEl.appendChild(document.createElement('table'));
     let headerRow = tableEl.appendChild(document.createElement('tr'));
@@ -55,3 +74,4 @@ addBooks('Book6', 'Author6', 423, true);
 displayBooks();
 
 addBooks('Book5', 'F. Yu', 86, true);
+// console.log(library[library.length - 1]);
