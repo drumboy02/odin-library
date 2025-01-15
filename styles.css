@@ -4,6 +4,20 @@
     box-sizing: border-box;
 }
 
+body {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+dialog {
+    margin: auto;
+}
+
+#top-layer {
+    background: red;
+}
+
 th {
     color: #eee;
     background-color: #000;
