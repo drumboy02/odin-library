@@ -12,11 +12,21 @@ newBook.addEventListener('click', () => {
 })
 
 submitBtn.addEventListener('click', () => {
+    let params = userInput.value.split(',');
+    
     // if library is empty
     if (!library[0]) {
-        addBooks(...userInput.value.split(','));
+        addBooks(...params);
+        createTable();
+        displayBooks();
+    } else {
+        mainEl.removeChild(document.querySelector('table'));
+        createTable();
+        addBooks(...params);
         displayBooks();
     }
+    console.log(library);
+    userInput.value = '';
     dialog.close();
 })
 
@@ -28,7 +38,7 @@ function Book(title, author, pages, read) {
     this.title = title;
     this.author = author;
     this.pages = pages;
-    this.read = read;    
+    this.read = read;
 }
 
 function addBooks(...args) {
@@ -43,7 +53,7 @@ function addBooks(...args) {
     }
 }
 
-function displayBooks() {
+function createTable() {
     const bookKeys = Object.keys(new Book());
 
     // create a table and headers for each key in Book
@@ -53,6 +63,13 @@ function displayBooks() {
         let tableHead = headerRow.appendChild(document.createElement('th'));
         tableHead.textContent = key.charAt(0).toUpperCase() + key.slice(1);
     })    
+}
+
+function displayBooks() {
+    const bookKeys = Object.keys(new Book());
+
+    // select the table
+    let tableEl = document.querySelector('table');
     
     // loop through library arr, create tr for each book
     library.forEach((book, idx) => {
@@ -67,8 +84,6 @@ function displayBooks() {
         })
     })
 }
-
-
 
 // addBooks('Book1', 'J. Doe', 200, true, 'Book2', 'W. Knows', 244, false, 'Book3', 'Unkown', 42, true);
 
