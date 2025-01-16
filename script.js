@@ -5,21 +5,24 @@ const userInput = document.querySelector('#user-input');
 const submitBtn = document.querySelector('#submit-btn');
 const closeBtn = document.querySelector('#close-btn');
 
+const library = [];
+
 newBook.addEventListener('click', () => {
     dialog.showModal();
 })
 
 submitBtn.addEventListener('click', () => {
-    console.log(userInput.value)
-    dialog.close(userInput.value);
-    // userInput.value = "";
+    // if library is empty
+    if (!library[0]) {
+        addBooks(...userInput.value.split(','));
+        displayBooks();
+    }
+    dialog.close();
 })
 
 closeBtn.addEventListener('click', () => {
     dialog.close();
 })
-
-const library = [];
 
 function Book(title, author, pages, read) {
     this.title = title;
@@ -58,7 +61,7 @@ function displayBooks() {
         tableRow.setAttribute('data-book', `book-${idx + 1}`);
 
         // loop through book obj keys, create td cell for each value
-        bookKeys.forEach(val =>{
+        bookKeys.forEach(val => {
             let tableData = tableRow.appendChild(document.createElement('td'));
             tableData.textContent = book[val];
         })
@@ -67,11 +70,11 @@ function displayBooks() {
 
 
 
-addBooks('Book1', 'J. Doe', 200, true, 'Book2', 'W. Knows', 244, false, 'Book3', 'Unkown', 42, true);
+// addBooks('Book1', 'J. Doe', 200, true, 'Book2', 'W. Knows', 244, false, 'Book3', 'Unkown', 42, true);
 
-addBooks('Book4', 'Author', 333, false);
-addBooks('Book6', 'Author6', 423, true);
-displayBooks();
+// addBooks('Book4', 'Author', 333, false);
+// addBooks('Book6', 'Author6', 423, true);
+// displayBooks();
 
-addBooks('Book5', 'F. Yu', 86, true);
+// addBooks('Book5', 'F. Yu', 86, true);
 // console.log(library[library.length - 1]);

@@ -4,30 +4,50 @@
     box-sizing: border-box;
 }
 
+html {
+    font-size: 16px;
+    color: #000;
+}
+
 body {
+    /* display: flex;
+    flex-direction: column;
+    align-items: center; */
     display: flex;
     flex-direction: column;
     align-items: center;
     background-image: linear-gradient(to right, #333, #aaa);
 }
 
+h1 {
+    text-shadow: 1px 1px #ccc;
+    margin: 1rem;
+}
+
 dialog {
     margin: auto;
-    background-color: #333;
-    color: #eee;
+    background-color: #eee;
+    color: #333;
 }
 
-th {
-    color: #eee;
-    background-color: #000;
-}
+table {
+    box-shadow: 8px 8px 4px #222;
+    margin: 2rem;
 
-tr {
-    color: #eee;
-    background-color: #555;
-}
-
-td, th {
-    outline: 1px solid #000;
-    padding: 1ch;
+    tr {
+        color: #eee;
+        background-color: #555;
+    }
+    
+    th {
+        color: #eee;
+        background-color: #000;
+        border-bottom: 1px solid #eee;
+    }
+    
+    td, th {
+        outline: 1px solid #000;
+        padding: 1ch;
+        border-right: 1px solid #eee;
+    }
 }
