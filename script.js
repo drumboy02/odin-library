@@ -76,7 +76,7 @@ function displayBooks() {
     let tbody = tableEl.appendChild(document.createElement('tbody'));
     
     // loop through library arr, create tr for each book
-    library.forEach((book, idx) => {
+    library.forEach((book, index) => {
         let tableRow = tbody.appendChild(document.createElement('tr'));
 
         // loop through book obj keys, create td cell for each value
@@ -86,28 +86,36 @@ function displayBooks() {
         })
 
         // set data attribute for step 5
-        tableRow.setAttribute('data-book', `book-${idx + 1}`);
-        let data = tableRow.dataset.book;
+        tableRow.setAttribute('data-book', `book-${index + 1}`);
+        library[index]['data-book'] = `book-${index + 1}`; 
 
+        let data = tableRow.dataset.book;
         addButtons(tableRow, data);
     })
 }
 
 function addButtons(row, dataAttr) {
+    let bookNum = dataAttr;
+    
     // create buttons and variables to select 
     let tdBtn1 = row.appendChild(document.createElement('td'));
     let tdBtn2 = row.appendChild(document.createElement('td'));
-    let bookNum = dataAttr;
-
     let removeBtn = tdBtn1.appendChild(document.createElement('button'));
     let markReadBtn = tdBtn2.appendChild(document.createElement('button'));
-
-    // add functionality to buttons
+    
     removeBtn.textContent = 'remove';
     markReadBtn.textContent = 'read';
 
+    // add functionality to buttons
     removeBtn.addEventListener('click', () => {
+        // remove row from table
         console.log(`remove ${bookNum}`);
+        document.querySelector('tbody').removeChild(row);
+        
+        // remove book from library
+        console.log(library);
+
+        // remove header if table is empty
     })
 
     markReadBtn.addEventListener('click', () => {
