@@ -76,7 +76,7 @@ function displayBooks() {
     let tbody = tableEl.appendChild(document.createElement('tbody'));
     
     // loop through library arr, create tr for each book
-    library.forEach((book, index) => {
+    library.forEach((book, libIndex) => {
         let tableRow = tbody.appendChild(document.createElement('tr'));
 
         // loop through book obj keys, create td cell for each value
@@ -86,15 +86,15 @@ function displayBooks() {
         })
 
         // set data attribute for step 5
-        tableRow.setAttribute('data-book', `book-${index + 1}`);
-        library[index]['data-book'] = `book-${index + 1}`; 
+        tableRow.setAttribute('data-book', `book-${libIndex + 1}`);
+        library[libIndex]['data-book'] = `book-${libIndex + 1}`; 
 
         let data = tableRow.dataset.book;
-        addButtons(tableRow, data);
+        addButtons(tableRow, data, libIndex);
     })
 }
 
-function addButtons(row, dataAttr) {
+function addButtons(row, dataAttr, libIndex) {
     let bookNum = dataAttr;
     
     // create buttons and variables to select 
@@ -113,6 +113,7 @@ function addButtons(row, dataAttr) {
         document.querySelector('tbody').removeChild(row);
         
         // remove book from library
+        library.splice(libIndex, 1);
         console.log(library);
 
         // remove header if table is empty
