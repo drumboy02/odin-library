@@ -113,10 +113,18 @@ function addButtons(row, dataAttr, libIndex) {
         document.querySelector('tbody').removeChild(row);
         
         // remove book from library
-        library.splice(libIndex, 1);
+        
+        /* this method doesn't work correctly
+        console.log("index: " + libIndex)
+        library.splice(libIndex, 1) 
+        */
+
         console.log(library);
 
         // remove header if table is empty
+        if (!library[0]) {
+            mainEl.removeChild(document.querySelector('table'));
+        }
     })
 
     markReadBtn.addEventListener('click', () => {
