@@ -26,8 +26,23 @@ h1 {
 
 dialog {
     margin: auto;
+    padding: 1rem;
     background-color: #eee;
     color: #333;
+
+    input {
+        display: block;
+        width: 100%;
+        margin: 0.4rem 0;
+    }
+
+    .btn-container {
+        display: flex;
+
+        & button {
+            width: 50%;
+        }
+    }
 }
 
 table {

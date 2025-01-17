@@ -7,14 +7,23 @@ const closeBtn = document.querySelector('#close-btn');
 
 const library = [];
 
+function Book(title, author, pages, read) {
+    this.title = title;
+    this.author = author;
+    this.pages = pages;
+    this.read = read;
+}
+
 newBook.addEventListener('click', () => {
     dialog.showModal();
 })
 
 submitBtn.addEventListener('click', () => {
+    if (!userInput.value) return;
     let params = userInput.value.split(',');
-    
-    // if library is empty
+
+    // if library is empty render table
+    // else remove table and rerender
     if (!library[0]) {
         addBooks(...params);
         createTable();
@@ -25,7 +34,7 @@ submitBtn.addEventListener('click', () => {
         addBooks(...params);
         displayBooks();
     }
-    console.log(library);
+
     userInput.value = '';
     dialog.close();
 })
@@ -33,13 +42,6 @@ submitBtn.addEventListener('click', () => {
 closeBtn.addEventListener('click', () => {
     dialog.close();
 })
-
-function Book(title, author, pages, read) {
-    this.title = title;
-    this.author = author;
-    this.pages = pages;
-    this.read = read;
-}
 
 function addBooks(...args) {
     const bookLen = Book.length;
@@ -58,7 +60,10 @@ function createTable() {
 
     // create a table and headers for each key in Book
     let tableEl = mainEl.appendChild(document.createElement('table'));
-    let headerRow = tableEl.appendChild(document.createElement('tr'));
+    let thead = tableEl.appendChild(document.createElement('thead'));
+    let headerRow = thead.appendChild(document.createElement('tr'));
+
+    // create header row with book obj keys
     bookKeys.forEach(key => {
         let tableHead = headerRow.appendChild(document.createElement('th'));
         tableHead.textContent = key.charAt(0).toUpperCase() + key.slice(1);
@@ -67,13 +72,12 @@ function createTable() {
 
 function displayBooks() {
     const bookKeys = Object.keys(new Book());
-
-    // select the table
     let tableEl = document.querySelector('table');
+    let tbody = tableEl.appendChild(document.createElement('tbody'));
     
     // loop through library arr, create tr for each book
     library.forEach((book, idx) => {
-        let tableRow = tableEl.appendChild(document.createElement('tr'));
+        let tableRow = tbody.appendChild(document.createElement('tr'));
         // set data attribute for step 5
         tableRow.setAttribute('data-book', `book-${idx + 1}`);
 
@@ -84,12 +88,3 @@ function displayBooks() {
         })
     })
 }
-
-// addBooks('Book1', 'J. Doe', 200, true, 'Book2', 'W. Knows', 244, false, 'Book3', 'Unkown', 42, true);
-
-// addBooks('Book4', 'Author', 333, false);
-// addBooks('Book6', 'Author6', 423, true);
-// displayBooks();
-
-// addBooks('Book5', 'F. Yu', 86, true);
-// console.log(library[library.length - 1]);
