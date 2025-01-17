@@ -78,9 +78,6 @@ function displayBooks() {
     // loop through library arr, create tr for each book
     library.forEach((book, idx) => {
         let tableRow = tbody.appendChild(document.createElement('tr'));
-        // set data attribute for step 5
-        tableRow.setAttribute('data-book', `book-${idx + 1}`);
-        console.log(tableRow.dataset.book);
 
         // loop through book obj keys, create td cell for each value
         bookKeys.forEach(val => {
@@ -88,27 +85,32 @@ function displayBooks() {
             tableData.textContent = book[val];
         })
 
-        // create buttons and variables to select 
-        let tdBtn1 = tableRow.appendChild(document.createElement('td'));
-        let tdBtn2 = tableRow.appendChild(document.createElement('td'));
+        // set data attribute for step 5
+        tableRow.setAttribute('data-book', `book-${idx + 1}`);
+        let data = tableRow.dataset.book;
 
-        let removeBtn = tdBtn1.appendChild(document.createElement('button'));
-        let markReadBtn = tdBtn2.appendChild(document.createElement('button'));
-
-        addButtons(removeBtn, markReadBtn);
+        addButtons(tableRow, data);
     })
 }
 
-function addButtons(removeBtn, markReadBtn) {
+function addButtons(row, dataAttr) {
+    // create buttons and variables to select 
+    let tdBtn1 = row.appendChild(document.createElement('td'));
+    let tdBtn2 = row.appendChild(document.createElement('td'));
+    let bookNum = dataAttr;
+
+    let removeBtn = tdBtn1.appendChild(document.createElement('button'));
+    let markReadBtn = tdBtn2.appendChild(document.createElement('button'));
+
     // add functionality to buttons
     removeBtn.textContent = 'remove';
     markReadBtn.textContent = 'read';
 
     removeBtn.addEventListener('click', () => {
-        console.log('remove');
+        console.log(`remove ${bookNum}`);
     })
 
     markReadBtn.addEventListener('click', () => {
-        console.log('markRead');
+        console.log(`markRead ${bookNum}`);
     })
 }
