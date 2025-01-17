@@ -5,7 +5,7 @@ const userInput = document.querySelector('#user-input');
 const submitBtn = document.querySelector('#submit-btn');
 const closeBtn = document.querySelector('#close-btn');
 
-const library = [];
+let library = [];
 
 function Book(title, author, pages, read) {
     this.title = title;
@@ -86,16 +86,15 @@ function displayBooks() {
         })
 
         // set data attribute for step 5
-        tableRow.setAttribute('data-book', `book-${libIndex + 1}`);
-        library[libIndex]['data-book'] = `book-${libIndex + 1}`; 
+        tableRow.setAttribute('data-book', `book-${book.title}`);
+        library[libIndex]['data-book'] = `book-${book.title}`; 
 
         let data = tableRow.dataset.book;
-        addButtons(tableRow, data, libIndex);
+        addButtons(tableRow, data);
     })
 }
 
-function addButtons(row, dataAttr, libIndex) {
-    let bookNum = dataAttr;
+function addButtons(row, dataAttr) {
     
     // create buttons and variables to select 
     let tdBtn1 = row.appendChild(document.createElement('td'));
@@ -109,17 +108,11 @@ function addButtons(row, dataAttr, libIndex) {
     // add functionality to buttons
     removeBtn.addEventListener('click', () => {
         // remove row from table
-        console.log(`remove ${bookNum}`);
+        console.log(`remove ${dataAttr}`);
         document.querySelector('tbody').removeChild(row);
         
         // remove book from library
-        
-        /* this method doesn't work correctly
-        console.log("index: " + libIndex)
-        library.splice(libIndex, 1) 
-        */
-
-        console.log(library);
+        library = library.filter(book => book[`data-book`] !== dataAttr);
 
         // remove header if table is empty
         if (!library[0]) {
@@ -128,7 +121,7 @@ function addButtons(row, dataAttr, libIndex) {
     })
 
     markReadBtn.addEventListener('click', () => {
-        console.log(`markRead ${bookNum}`);
+        console.log(`markRead ${dataAttr}`);
         if (row.children[3].textContent === "true") {
             row.children[3].textContent = false;
         } else {
