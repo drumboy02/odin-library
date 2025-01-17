@@ -120,5 +120,10 @@ function addButtons(row, dataAttr) {
 
     markReadBtn.addEventListener('click', () => {
         console.log(`markRead ${bookNum}`);
+        if (row.children[3].textContent === "true") {
+            row.children[3].textContent = false;
+        } else {
+            row.children[3].textContent = true;
+        }
     })
 }
