@@ -108,11 +108,10 @@ function addButtons(row, dataAttr) {
     // add functionality to buttons
     removeBtn.addEventListener('click', () => {
         // remove row from table
-        console.log(`remove ${dataAttr}`);
         document.querySelector('tbody').removeChild(row);
         
         // remove book from library
-        library = library.filter(book => book[`data-book`] !== dataAttr);
+        library = library.filter(book => book['data-book'] !== dataAttr);
 
         // remove header if table is empty
         if (!library[0]) {
@@ -121,11 +120,22 @@ function addButtons(row, dataAttr) {
     })
 
     markReadBtn.addEventListener('click', () => {
-        console.log(`markRead ${dataAttr}`);
+        // console.log(`markRead ${dataAttr}`);
+        // check table text then map value to correct book in library
         if (row.children[3].textContent === "true") {
-            row.children[3].textContent = false;
+            library.map(book => {
+                if (book['data-book'] === dataAttr) {
+                    book.read = false;
+                    row.children[3].textContent = book.read;
+                } 
+            });
         } else {
-            row.children[3].textContent = true;
+            library.map(book => {
+                if (book['data-book'] === dataAttr) {
+                    book.read = true;
+                    row.children[3].textContent = book.read;
+                } 
+            });
         }
     })
 }
