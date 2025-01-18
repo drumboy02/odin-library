@@ -120,7 +120,6 @@ function addButtons(row, dataAttr) {
     })
 
     markReadBtn.addEventListener('click', () => {
-        // console.log(`markRead ${dataAttr}`);
         // check table text then map value to correct book in library
         if (row.children[3].textContent === "true") {
             library.map(book => {

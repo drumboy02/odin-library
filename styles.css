@@ -6,6 +6,7 @@
 
 html {
     font-size: 16px;
+    font-family: 'Times New Roman', Times, serif;
     color: #000;
 }
 
@@ -17,20 +18,46 @@ body {
 }
 
 h1 {
-    text-shadow: 1px 1px #ccc;
+    margin: auto;
+    padding: 1rem;
+    background-color: #777;
+    border: 2px solid #000;
+    border-radius: 5px;
     margin: 1rem;
+    font-size: 2.5rem;
+    text-shadow: 1px 1px #ddd;
+}
+
+button {
+    background-color: #333;
+    font-size: 0.9rem;
+    font-family: inherit;
+    font-weight: 600;
+    color: #eee;
+    text-shadow: 2px 1px #000;
+    padding: 0.2rem;
+    border-radius: 3px;
+
+    &:hover {
+        background-color: rgb(111, 127, 111);
+        outline: 1px solid rgb(0, 192, 0);
+    }
 }
 
 dialog {
     margin: auto;
     padding: 1rem;
-    background-color: #eee;
-    color: #333;
+    background-color: #333;
+    color: #eee;
+    text-shadow: 2px 1px #000;
+    border: 1px solid #eee;
+    border-radius: 5px;
 
     input {
         display: block;
         width: 100%;
-        margin: 0.4rem 0;
+        margin: 0.6rem 0;
+        padding: 3px;
     }
 
     .btn-container {
@@ -38,6 +65,12 @@ dialog {
 
         & button {
             width: 50%;
+            margin: 0 1px;
+        }
+
+        :first-child:hover {
+            background-color: rgb(127, 95, 95);
+            outline: 1px solid rgb(192, 0, 0);
         }
     }
 }
@@ -55,11 +88,18 @@ table {
 
     tr {
         color: #eee;
+        text-shadow: 2px 1px #000;
         background-color: #555;
+
+        :nth-child(5) button:hover {
+            background-color: rgb(127, 63, 63);
+            outline: 1px solid rgb(192, 0, 0);
+        }
     }
     
     th {
         color: #eee;
+        text-shadow: 2px 1px #000;
         background-color: #000;
     }
     
